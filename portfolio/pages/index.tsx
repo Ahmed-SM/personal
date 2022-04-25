@@ -7,6 +7,8 @@ const styles = {
   container:
     "flex w-full max-w-[595px] max-h-[842px] flex-grow items-stretch justify-between self-center justify-self bg-white dark:bg-slate-800 py-[45px] px-[29px] my-auto",
   leftWrapper: "relative mx-[8px] flex w-[210px] flex-grow flex-col bg-white",
+  personalImage:
+    "absolute top-0 left-0 right-0 z-10 mx-auto h-[121.35px] w-[90px] rounded-full border-[3px] border-white bg-white",
   leftContent:
     "pt-[75px] mt-[60.5px] flex flex-grow flex-col bg-[#FFE6CF] dark:bg-slate-900 space-y-[15px]",
   righWrapper:
@@ -33,7 +35,9 @@ const Home: NextPage = () => {
         />
       </Head>
       <div className={styles.leftWrapper}>
-        <div className="absolute top-0 left-0 right-0 z-10 mx-auto h-[121.35px] w-[90px] rounded-full border-[3px] border-white bg-white"></div>
+        <div className={styles.personalImage}>
+          <Image src={"/assets/experience.svg"} layout="fill" />
+        </div>
         <div className={styles.leftContent}>
           <SectionContainer title="ABOUT ME" padding>
             <SectionItem />
