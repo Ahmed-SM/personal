@@ -264,7 +264,19 @@ const defaultProps: ISectionHeadingProps = {
 
 SectionHeading.defaultProps = defaultProps;
 
-const SectionContent = ({ heading, subHeading, padding = true, children }) => {
+interface ISectionContentProps {
+  heading: string;
+  subHeading?: string;
+  padding?: boolean;
+  children?: any;
+}
+
+const SectionContent = ({
+  heading,
+  subHeading,
+  padding = true,
+  children,
+}: ISectionContentProps) => {
   return (
     <div className="flex flex-shrink-0 items-stretch">
       <div className="relative mr-[10px] w-[1px] flex-shrink-0 bg-[#414042] rtl:ml-[10px] dark:bg-slate-300">
@@ -274,9 +286,11 @@ const SectionContent = ({ heading, subHeading, padding = true, children }) => {
         <h4 className="text-[10px] font-semibold leading-[0.6] tracking-[0.02em]">
           {heading}
         </h4>
-        <p className="font-Roboto text-[8px] leading-[11.2px] text-[#414042] opacity-70">
-          {subHeading}
-        </p>
+        {subHeading && (
+          <p className="font-Roboto text-[8px] leading-[11.2px] text-[#414042] opacity-70">
+            {subHeading}
+          </p>
+        )}
         {children}
       </div>
     </div>
@@ -301,7 +315,15 @@ const SectionList = ({
   );
 };
 
-const SectionItem = ({ space = "space-y-[0px]", children }) => {
+interface ISectionItemProps {
+  space?: string;
+  children?: any;
+}
+
+const SectionItem = ({
+  space = "space-y-[0px]",
+  children,
+}: ISectionItemProps) => {
   return (
     <div className={space ? `${space} font-openSans` : "font-openSans"}>
       {children}
@@ -324,7 +346,13 @@ const NameTitle = () => {
   );
 };
 
-const RowItem = ({ value, icon, text }) => {
+interface IRowItemProps {
+  value?: string;
+  icon?: string;
+  text?: string;
+}
+
+const RowItem = ({ value, icon, text }: IRowItemProps) => {
   return (
     <div className="flex flex-col font-openSans">
       <div className="flex items-center justify-between py-[3.5px] font-openSans">
