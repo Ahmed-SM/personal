@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         openSans: "Open Sans",
+        Roboto: "Roboto",
       },
     },
   },

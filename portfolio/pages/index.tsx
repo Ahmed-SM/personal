@@ -15,6 +15,47 @@ const styles = {
     "mx-[8px] flex w-[289px] flex-grow flex-col bg-white dark:bg-slate-800 space-y-[15px]",
 };
 
+const Skills = [
+  {
+    left: "React JS / Next JS",
+    right: "HTML5 / CSS3",
+  },
+  {
+    left: "React Hooks / Redux",
+    right: "Tailwind CSS / PostCSS",
+  },
+  {
+    left: "SQL Server",
+    right: "Styled-Components",
+  },
+  {
+    left: "ASP.NET",
+    right: "Node.js",
+  },
+  {
+    left: "Git/TFS",
+    right: "API Integration / Postman",
+  },
+  {
+    left: "Google Maps API",
+    right: "Devextreme widgets",
+  },
+  {
+    left: "Visual Studio Code",
+    right: "Zeplin / Figma",
+  },
+];
+
+const Languages = [
+  {
+    left: "English",
+    right: "Proficient",
+  },
+  {
+    left: "Arabic",
+    right: "Native",
+  },
+];
 const Home: NextPage = () => {
   useEffect(() => {
     // document.documentElement.className = "dark";
@@ -31,6 +72,10 @@ const Home: NextPage = () => {
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
           rel="stylesheet"
         />
       </Head>
@@ -52,16 +97,44 @@ const Home: NextPage = () => {
             </SectionItem>
           </SectionContainer>
           <SectionContainer padding>
-            <SectionHeading title="INFORMATION" />
-            <SectionItem />
+            <SectionHeading title="INFORMATION" margin={false} />
+            <SectionItem>
+              <RowItem value={"22-08-1994"} icon={"/assets/birthday.svg"} />
+              <RowItem value={"Egyptian"} icon={"/assets/signright.svg"} />
+              <RowItem
+                value={"Khuzam - Ras Al-Khaimah"}
+                icon={"/assets/location.svg"}
+              />
+              <RowItem value={"(971)50-959-7011"} icon={"/assets/phone.svg"} />
+              <RowItem value={"1-month"} text={"NP"} />
+              <RowItem value={"Golden Visa"} text={"VISA"} />
+            </SectionItem>
           </SectionContainer>
           <SectionContainer padding>
             <SectionHeading title="SKILLS" />
-            <SectionItem />
+            <SectionItem space="space-y-[8px]">
+              {Skills.map((item) => {
+                return (
+                  <div className="flex items-center justify-between font-openSans text-[8px] leading-[11px]">
+                    <p>{item.left}</p>
+                    <p>{item.right}</p>
+                  </div>
+                );
+              })}
+            </SectionItem>
           </SectionContainer>
           <SectionContainer padding>
             <SectionHeading title="LANGUAGES" />
-            <SectionItem />
+            <SectionItem space="space-y-[5px]">
+              {Languages.map((item) => {
+                return (
+                  <div className="flex items-center justify-between font-openSans leading-[14px]">
+                    <p className="text-[10px]">{item.left}</p>
+                    <p className="text-[9px] opacity-70">{item.right}</p>
+                  </div>
+                );
+              })}
+            </SectionItem>
           </SectionContainer>
         </div>
       </div>
@@ -91,10 +164,11 @@ const Home: NextPage = () => {
                 "Delivered a google maps module that utilizes paginated APIs to provide reactive location filtering.",
                 "Developed reusable custom components with minimal to zero dependencies",
               ]}
+              space={"space-y-[8px]"}
             />
           </SectionContent>
           <SectionContent heading="Freelance Developer">
-            <SectionList />
+            <SectionList space={"space-y-[9px]"} />
           </SectionContent>
           <SectionContent
             heading="Developer"
@@ -105,6 +179,7 @@ const Home: NextPage = () => {
                 "Engaged in developing HTML pages from sketchs.",
                 "Handled mentoring a team of fresh React developers.",
               ]}
+              space={"space-y-[9px]"}
             />
           </SectionContent>
           <SectionContent
@@ -136,6 +211,7 @@ interface ISectionContainerProps {
 interface ISectionHeadingProps {
   title: string;
   icon?: string;
+  margin?: boolean;
 }
 
 const SectionContainer = (props: ISectionContainerProps) => {
@@ -154,7 +230,13 @@ const SectionContainer = (props: ISectionContainerProps) => {
 
 const SectionHeading = (props: ISectionHeadingProps) => {
   return (
-    <div className="mb-[10px] flex flex-shrink-0 flex-col">
+    <div
+      className={
+        props.margin
+          ? "mb-[10px] flex flex-shrink-0 flex-col"
+          : "flex flex-shrink-0 flex-col"
+      }
+    >
       <span className="h-[1px] bg-[#414042] dark:bg-slate-300"></span>
       <div className="flex flex-shrink-0 items-center py-[5px]">
         {props.icon && (
@@ -175,6 +257,13 @@ const SectionHeading = (props: ISectionHeadingProps) => {
   );
 };
 
+const defaultProps: ISectionHeadingProps = {
+  title: "",
+  margin: true,
+};
+
+SectionHeading.defaultProps = defaultProps;
+
 const SectionContent = ({ heading, subHeading, padding = true, children }) => {
   return (
     <div className="flex flex-shrink-0 items-stretch">
@@ -182,10 +271,12 @@ const SectionContent = ({ heading, subHeading, padding = true, children }) => {
         <span className="absolute top-0 left-[-2px] right-[-2px] mx-auto h-[5px] w-[5px] rounded-full bg-[#414042]" />
       </div>
       <div className={padding ? "space-y-[4px] pb-[16px]" : "space-y-[4px]"}>
-        <h4 className="text-[10px] font-semibold leading-none tracking-[0.02em]">
+        <h4 className="text-[10px] font-semibold leading-[0.6] tracking-[0.02em]">
           {heading}
         </h4>
-        <p className="text-[8px] opacity-70">{subHeading}</p>
+        <p className="font-Roboto text-[8px] leading-[11.2px] text-[#414042] opacity-70">
+          {subHeading}
+        </p>
         {children}
       </div>
     </div>
@@ -197,9 +288,12 @@ const SectionList = ({
     "Research on Recommendation Algorithms",
     "Android Mobile Application Graduation Project",
   ],
+  space = "space-y-[4px]",
 }) => {
   return (
-    <ul className="list-disc space-y-[4px] px-[8px] text-[8px]">
+    <ul
+      className={`list-disc px-[8px] ${space} text-justify font-Roboto text-[9px] tracking-normal text-[#414042]`}
+    >
       {list.map((item) => (
         <li>{item}</li>
       ))}
@@ -207,8 +301,12 @@ const SectionList = ({
   );
 };
 
-const SectionItem = ({ children }) => {
-  return <div className="space-y-[4px] font-openSans">{children}</div>;
+const SectionItem = ({ space = "space-y-[0px]", children }) => {
+  return (
+    <div className={space ? `${space} font-openSans` : "font-openSans"}>
+      {children}
+    </div>
+  );
 };
 
 const NameTitle = () => {
@@ -222,6 +320,31 @@ const NameTitle = () => {
         <p className="font-openSans text-[10px]">Fullstack Developer</p>
         <span className="mx-1 h-[2px] w-[2px] rounded-full bg-[#414042]" />
       </div>
+    </div>
+  );
+};
+
+const RowItem = ({ value, icon, text }) => {
+  return (
+    <div className="flex flex-col font-openSans">
+      <div className="flex items-center justify-between py-[3.5px] font-openSans">
+        <div className="flex w-[34px] items-stretch justify-between">
+          <div className="flex flex-grow items-center justify-center">
+            {icon ? (
+              <Image priority={true} src={icon} width="14px" height="14px" />
+            ) : (
+              text && (
+                <p className="text-[10px] font-bold text-[#414042] opacity-80">
+                  {text}
+                </p>
+              )
+            )}
+          </div>
+          <span className="w-[0.5px] bg-[#414042] opacity-60"></span>
+        </div>
+        <p className="text-[9px] text-[#414042] opacity-80">{value}</p>
+      </div>
+      <span className="h-[1px] bg-[#414042] dark:bg-slate-300"></span>
     </div>
   );
 };
