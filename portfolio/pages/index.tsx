@@ -113,9 +113,12 @@ const Home: NextPage = () => {
           <SectionContainer padding>
             <SectionHeading title="SKILLS" />
             <SectionItem space="space-y-[8px]">
-              {Skills.map((item) => {
+              {Skills.map((item, index) => {
                 return (
-                  <div className="flex items-center justify-between font-openSans text-[8px] leading-[11px]">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between font-openSans text-[8px] leading-[11px]"
+                  >
                     <p>{item.left}</p>
                     <p>{item.right}</p>
                   </div>
@@ -126,9 +129,12 @@ const Home: NextPage = () => {
           <SectionContainer padding>
             <SectionHeading title="LANGUAGES" />
             <SectionItem space="space-y-[5px]">
-              {Languages.map((item) => {
+              {Languages.map((item, index) => {
                 return (
-                  <div className="flex items-center justify-between font-openSans leading-[14px]">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between font-openSans leading-[14px]"
+                  >
                     <p className="text-[10px]">{item.left}</p>
                     <p className="text-[9px] opacity-70">{item.right}</p>
                   </div>
@@ -308,8 +314,8 @@ const SectionList = ({
     <ul
       className={`list-disc px-[8px] ${space} text-justify font-Roboto text-[9px] tracking-normal text-[#414042]`}
     >
-      {list.map((item) => (
-        <li>{item}</li>
+      {list.map((item, index) => (
+        <li key={index}>{item}</li>
       ))}
     </ul>
   );
