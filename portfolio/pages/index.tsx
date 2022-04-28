@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
+import SectionContainer from "components/SectionContainer";
 import { useEffect } from "react";
 
 const styles = {
@@ -63,22 +63,6 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <div className={styles.leftWrapper}>
         <div className={styles.personalImage}>
           <Image priority={true} src={"/assets/Avatar.svg"} layout="fill" />
@@ -210,29 +194,11 @@ const Home: NextPage = () => {
 
 export default Home;
 
-interface ISectionContainerProps {
-  padding?: boolean;
-  children: any;
-}
 interface ISectionHeadingProps {
   title: string;
   icon?: string;
   margin?: boolean;
 }
-
-const SectionContainer = (props: ISectionContainerProps) => {
-  return (
-    <div
-      className={
-        props.padding
-          ? "flex flex-shrink-0 flex-col px-[14px] text-[#414042] dark:text-slate-300"
-          : "flex flex-shrink-0 flex-col text-[#414042] dark:text-slate-300"
-      }
-    >
-      <div className="flex flex-shrink-0 flex-col">{props.children}</div>
-    </div>
-  );
-};
 
 const SectionHeading = (props: ISectionHeadingProps) => {
   return (
